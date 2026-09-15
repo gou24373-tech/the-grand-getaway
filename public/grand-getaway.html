@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Grand Getaway - Discover, explore, and book your next premium travel experience">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="The Grand Getaway - Premium Travel Experiences">
+    <meta property="og:description" content="Discover destinations, hotels, activities and curated travel experiences">
+    <title>The Grand Getaway - Luxury Travel Discovery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0f172a;
+            --bg-darker: #09101f;
+            --bg-light: #f8fafc;
+            --bg-card: #1a2847;
+            --text-primary: #f0f4f8;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #d4af37;
+            --accent-dark: #b8941f;
+            --accent-light: #e8d4a8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 40px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+        }
+
+        header.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: var(--shadow-md);
+            padding: 0.75rem 2rem;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 60px;
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a3a52 0%, #0f172a 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(212,175,55,0.15);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(212,175,55,0);stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad)"/><circle cx="200" cy="150" r="150" fill="rgba(212,175,55,0.1)"/><circle cx="1000" cy="500" r="200" fill="rgba(52,152,219,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 8vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: heroSlideIn 1s ease 0.3s forwards;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes heroSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: heroSlideIn 1s ease 0.5s forwards;
+        }
+
+        .search-box {
+            background: rgba(26, 40, 71, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: heroSlideIn 1s ease 0.7s forwards;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .btn {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(212, 175, 55, 0.25);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Section styling */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+        }
+
+        /* Destinations grid */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .destination-card {
+            position: relative;
+            height: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            group: 'card';
+        }
+
+        .destination-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .destination-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .destination-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .destination-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .destination-image {
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(135deg, #1a3a52 0%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .destination-card:hover .destination-image img {
+            transform: scale(1.08);
+        }
+
+        .destination-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .destination-card:hover .destination-overlay {
+            opacity: 1;
+        }
+
+        .destination-info {
+            padding: 1.5rem;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .destination-title {
+            font-size: 24px;
+            margin-bottom: 0.5rem;
+        }
+
+        .destination-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .destination-country {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .destination-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 14px;
+        }
+
+        .star {
+            color: var(--accent);
+        }
+
+        .favorite-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            color: var(--accent);
+        }
+
+        .favorite-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* Featured guides */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 40, 71, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .guide-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .guide-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .guide-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .guide-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #1a3a52 0%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .guide-card:hover .guide-image img {
+            transform: scale(1.05);
+        }
+
+        .guide-content {
+            padding: 1.5rem;
+        }
+
+        .guide-category {
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-title {
+            font-size: 18px;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .guide-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Deals section */
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .deal-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 40, 71, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            position: relative;
+        }
+
+        .deal-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .deal-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .deal-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            background: var(--accent);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .deal-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .deal-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a3a52 0%, #0f172a 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .deal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .deal-card:hover .deal-image img {
+            transform: scale(1.05);
+        }
+
+        .deal-content {
+            padding: 1.5rem;
+        }
+
+        .deal-price {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: baseline;
+        }
+
+        .deal-current-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .deal-original-price {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .deal-title {
+            font-size: 18px;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-dates {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 40, 71, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .newsletter-section h2 {
+            font-size: 36px;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .destinations-grid,
+            .guides-grid,
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input,
+            .btn {
+                width: 100%;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .destination-card {
+                height: 350px;
+            }
+        }
+
+        /* Utility classes */
+        .active {
+            background: var(--accent) !important;
+            color: #000 !important;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="logo" onclick="window.location.href='#'">The Grand Getaway</div>
+            <ul class="nav-links">
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#guides">Guides</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#inspiration">Inspiration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Your Next <span>Grand Adventure</span></h1>
+                <p class="hero-subtitle">Explore the world's most extraordinary destinations, curated for the discerning traveler</p>
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Where do you want to go?">
+                    <button class="btn" onclick="performSearch()">Explore</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Destinations -->
+        <section id="destinations">
+            <div class="container">
+                <h2 class="section-title">Popular Destinations</h2>
+                <p class="section-subtitle">Handpicked locations loved by our travelers</p>
+                <div class="destinations-grid" id="destinationsGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Guides -->
+        <section id="guides" style="background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 100%);">
+            <div class="container">
+                <h2 class="section-title">Travel Guides</h2>
+                <p class="section-subtitle">Expert insights from experienced travelers</p>
+                <div class="guides-grid" id="guidesGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Travel Deals -->
+        <section id="deals">
+            <div class="container">
+                <h2 class="section-title">Exclusive Offers</h2>
+                <p class="section-subtitle">Limited-time deals on luxury experiences</p>
+                <div class="deals-grid" id="dealsGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section style="padding: 80px 2rem;">
+            <div class="container" style="max-width: 800px;">
+                <div class="newsletter-section">
+                    <h2>Stay Inspired</h2>
+                    <p>Get weekly curated travel recommendations and exclusive deals delivered to your inbox</p>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="your@email.com" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Experience</h4>
+                        <ul>
+                            <li><a href="#">Destinations</a></li>
+                            <li><a href="#">Hotels</a></li>
+                            <li><a href="#">Activities</a></li>
+                            <li><a href="#">Flights</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Safety</a></li>
+                            <li><a href="#">Terms</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 The Grand Getaway. All rights reserved. | <a href="#" style="color: inherit;">Privacy Policy</a> | <a href="#" style="color: inherit;">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Destination data
+        const destinations = [
+            {
+                id: 1,
+                name: 'Santorini',
+                country: 'Greece',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387ceeb;stop-opacity:1" /></linearGradient><linearGradient id="sea" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%235bb7d9;stop-opacity:1" /><stop offset="100%" style="stop-color:%232980b9;stop-opacity:1" /></linearGradient></defs><rect width="400" height="300" fill="url(%23sky)"/><circle cx="100" cy="60" r="35" fill="%23ffd700" opacity="0.9"/><path d="M 0 200 L 400 200 L 400 300 L 0 300 Z" fill="url(%23sea)"/><polygon points="150,200 200,120 250,200" fill="%23f5f5f5" opacity="0.8"/><polygon points="160,200 200,140 240,200" fill="%23ffffff" opacity="0.6"/><path d="M 50 250 Q 80 240 110 250 T 170 250" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.5"/></svg>',
+                rating: 4.8,
+                reviews: 2543,
+                price: '$1,299'
+            },
+            {
+                id: 2,
+                name: 'Bali',
+                country: 'Indonesia',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="tropical" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387ceeb;stop-opacity:1" /></linearGradient></defs><rect width="400" height="300" fill="url(%23tropical)"/><path d="M 0 180 Q 100 150 200 160 T 400 180 L 400 300 L 0 300 Z" fill="%23228B22"/><rect x="150" y="100" width="15" height="80" fill="%238B4513"/><circle cx="157" cy="100" r="20" fill="%2332CD32"/><circle cx="140" cy="85" r="15" fill="%2332CD32"/><circle cx="175" cy="85" r="15" fill="%2332CD32"/></svg>',
+                rating: 4.7,
+                reviews: 3102,
+                price: '$899'
+            },
+            {
+                id: 3,
+                name: 'Paris',
+                country: 'France',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="paris" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23b19cd9;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387ceeb;stop-opacity:1" /></linearGradient></defs><rect width="400" height="300" fill="url(%23paris)"/><polygon points="200,50 210,120 200,140 190,120" fill="%23daa520"/><line x1="200" y1="140" x2="200" y2="250" stroke="%23daa520" stroke-width="3"/><g fill="%23daa520"><rect x="195" y="240" width="10" height="60"/><rect x="185" y="220" width="8" height="80"/><rect x="207" y="220" width="8" height="80"/></g></svg>',
+                rating: 4.9,
+                reviews: 4521,
+                price: '$1,599'
+            },
+            {
+                id: 4,
+                name: 'Tokyo',
+                country: 'Japan',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="tokyo" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23696969;stop-opacity:1" /><stop offset="100%" style="stop-color:%23a9a9a9;stop-opacity:1" /></linearGradient></defs><rect width="400" height="300" fill="url(%23tokyo)"/><circle cx="350" cy="80" r="30" fill="%23ff6347"/><rect x="80" y="180" width="30" height="120" fill="%23333" opacity="0.9"/><rect x="130" y="160" width="25" height="140" fill="%23333" opacity="0.8"/><rect x="170" y="140" width="20" height="160" fill="%23333" opacity="0.85"/><rect x="210" y="170" width="28" height="130" fill="%23333" opacity="0.8"/><rect x="260" y="190" width="25" height="110" fill="%23333" opacity="0.75"/></svg>',
+                rating: 4.6,
+                reviews: 2891,
+                price: '$1,199'
+            }
+        ];
+
+        const guides = [
+            {
+                id: 1,
+                title: 'The Ultimate Beach Getaway Guide',
+                category: 'Beach',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="beach" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23ffd700;stop-opacity:0.8" /><stop offset="50%" style="stop-color:%238bceeb;stop-opacity:1" /><stop offset="100%" style="stop-color:%232980b9;stop-opacity:1" /></linearGradient></defs><rect width="300" height="200" fill="url(%23beach)"/></svg>',
+                description: 'Discover the secrets to planning the perfect beach holiday with expert tips on timing, destinations, and activities.'
+            },
+            {
+                id: 2,
+                title: 'Mountain Adventures Across Europe',
+                category: 'Adventure',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="mountain" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23e0f6ff;stop-opacity:1" /><stop offset="100%" style="stop-color:%238b7355;stop-opacity:1" /></linearGradient></defs><rect width="300" height="200" fill="url(%23mountain)"/><polygon points="50,150 100,60 150,150" fill="%2343454d" opacity="0.8"/><polygon points="120,150 180,40 240,150" fill="%2362727b" opacity="0.7"/><polygon points="180,150 220,80 260,150" fill="%2343454d" opacity="0.6"/></svg>',
+                description: 'Explore alpine trails, summit peaks, and experience mountain villages in the heart of Europe\'s most stunning landscapes.'
+            },
+            {
+                id: 3,
+                title: 'Urban Exploration: 48 Hours in Major Cities',
+                category: 'City',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="city" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23333;stop-opacity:1" /><stop offset="100%" style="stop-color:%23666;stop-opacity:1" /></linearGradient></defs><rect width="300" height="200" fill="url(%23city)"/><rect x="30" y="100" width="20" height="100" fill="%23999"/><rect x="60" y="80" width="20" height="120" fill="%23aaa"/><rect x="90" y="110" width="20" height="90" fill="%23999"/><rect x="120" y="70" width="20" height="130" fill="%23bbb"/><rect x="150" y="100" width="20" height="100" fill="%23aaa"/></svg>',
+                description: 'Make the most of your city breaks with curated itineraries, hidden gems, and insider recommendations for major metropolises.'
+            }
+        ];
+
+        const deals = [
+            {
+                id: 1,
+                title: '5-Star Resort Escape to Maldives',
+                discount: '30% OFF',
+                currentPrice: '$1,899',
+                originalPrice: '$2,699',
+                dates: 'Dec 1 - Dec 31',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="resort" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387ceeb;stop-opacity:1" /></linearGradient></defs><rect width="300" height="200" fill="url(%23resort)"/><circle cx="50" cy="50" r="30" fill="%23ffd700"/><path d="M 0 140 L 300 140 L 300 200 L 0 200 Z" fill="%23f4a460"/></svg>'
+            },
+            {
+                id: 2,
+                title: 'European Grand Tour: 14 Days',
+                discount: '25% OFF',
+                currentPrice: '$2,499',
+                originalPrice: '$3,299',
+                dates: 'Mar 1 - Sep 30',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="europe" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23b19cd9;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387ceeb;stop-opacity:1" /></linearGradient></defs><rect width="300" height="200" fill="url(%23europe)"/><polygon points="100,100 120,50 140,100" fill="%23daa520" opacity="0.8"/></svg>'
+            },
+            {
+                id: 3,
+                title: 'Luxury Safari Adventure in Kenya',
+                discount: '35% OFF',
+                currentPrice: '$3,299',
+                originalPrice: '$5,099',
+                dates: 'Jun 15 - Aug 30',
+                image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="safari" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23d2b48c;stop-opacity:1" /><stop offset="100%" style="stop-color:%23cd853f;stop-opacity:1" /></linearGradient></defs><rect width="300" height="200" fill="url(%23safari)"/><circle cx="60" cy="80" r="25" fill="%23daa520" opacity="0.7"/></svg>'
+            }
+        ];
+
+        // Populate destinations
+        function populateDestinations() {
+            const grid = document.getElementById('destinationsGrid');
+            grid.innerHTML = destinations.map(dest => `
+                <div class="destination-card" onclick="viewDestination(${dest.id})">
+                    <div class="destination-image">
+                        <img src="${dest.image}" alt="${dest.name}" loading="lazy">
+                        <div class="destination-overlay"></div>
+                    </div>
+                    <div class="destination-info">
+                        <div>
+                            <div class="destination-country">${dest.country}</div>
+                            <h3 class="destination-title">${dest.name}</h3>
+                        </div>
+                        <div class="destination-meta">
+                            <div class="destination-rating">
+                                <span class="star">★★★★★</span>
+                                <span>${dest.rating} (${dest.reviews})</span>
+                            </div>
+                            <button class="favorite-btn" onclick="toggleFavorite(event, ${dest.id})" title="Save to favorites">♡</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Populate guides
+        function populateGuides() {
+            const grid = document.getElementById('guidesGrid');
+            grid.innerHTML = guides.map(guide => `
+                <div class="guide-card">
+                    <div class="guide-image">
+                        <img src="${guide.image}" alt="${guide.title}" loading="lazy">
+                    </div>
+                    <div class="guide-content">
+                        <div class="guide-category">${guide.category}</div>
+                        <h3 class="guide-title">${guide.title}</h3>
+                        <p class="guide-description">${guide.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Populate deals
+        function populateDeals() {
+            const grid = document.getElementById('dealsGrid');
+            grid.innerHTML = deals.map(deal => `
+                <div class="deal-card">
+                    <div class="deal-badge">${deal.discount}</div>
+                    <div class="deal-image">
+                        <img src="${deal.image}" alt="${deal.title}" loading="lazy">
+                    </div>
+                    <div class="deal-content">
+                        <h3 class="deal-title">${deal.title}</h3>
+                        <div class="deal-price">
+                            <span class="deal-current-price">${deal.currentPrice}</span>
+                            <span class="deal-original-price">${deal.originalPrice}</span>
+                        </div>
+                        <div class="deal-dates">${deal.dates}</div>
+                        <button class="btn" style="width: 100%; margin-top: 1rem;">View Details</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Functions
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+            if (query) {
+                alert(`Searching for: ${query}\n\nNote: This is a portfolio demonstration. Search functionality is not implemented.`);
+            }
+        }
+
+        function viewDestination(id) {
+            alert(`Viewing destination: ${destinations[id-1].name}\n\nNote: This is a portfolio demonstration. Full destination pages are not implemented.`);
+        }
+
+        function toggleFavorite(e, id) {
+            e.stopPropagation();
+            const btn = e.target;
+            btn.classList.toggle('active');
+            btn.textContent = btn.classList.contains('active') ? '♥' : '♡';
+        }
+
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing!\n\nNote: This is a portfolio demonstration. Email subscription is not implemented.');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            populateDestinations();
+            populateGuides();
+            populateDeals();
+
+            // Observe elements for animation
+            document.querySelectorAll('.section-title, .section-subtitle, .destination-card, .guide-card, .deal-card, .newsletter-section').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
