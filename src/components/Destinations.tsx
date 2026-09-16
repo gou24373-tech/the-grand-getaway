@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { Heart, Star, Clock, MapPin } from 'lucide-react';
 import { destinations, continents, type Destination } from '@/data/destinations';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
@@ -64,17 +65,25 @@ export function Destinations({ searchQuery, selectedContinent, onContinentChange
             <p className="text-lg text-navy-500">No destinations found. Try a different search or filter.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((dest, i) => (
+          <motion.div
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12 } },
+            }}
+          >
+            {filtered.map((dest) => (
               <DestinationCard
                 key={dest.id}
                 dest={dest}
-                delay={i * 80}
                 isFavorite={favorites.includes(dest.id)}
                 onToggleFavorite={() => toggleFavorite(dest.id)}
               />
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
@@ -83,15 +92,17 @@ export function Destinations({ searchQuery, selectedContinent, onContinentChange
 
 interface DestinationCardProps {
   dest: Destination;
-  delay: number;
   isFavorite: boolean;
   onToggleFavorite: () => void;
 }
 
-function DestinationCard({ dest, delay, isFavorite, onToggleFavorite }: DestinationCardProps) {
+function DestinationCard({ dest, isFavorite, onToggleFavorite }: DestinationCardProps) {
   return (
-    <Reveal
-      delay={delay}
+    <motion.article
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+      }}
       className="group overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
     >
       <div className="relative h-64 overflow-hidden">
@@ -158,6 +169,6 @@ function DestinationCard({ dest, delay, isFavorite, onToggleFavorite }: Destinat
           </a>
         </div>
       </div>
-    </Reveal>
+    </motion.article>
   );
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, Compass } from 'lucide-react';
 
 const navLinks = [
@@ -43,8 +44,11 @@ export function Header() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           scrolled
             ? 'bg-navy-950/95 backdrop-blur-md shadow-lg shadow-navy-950/30'
             : 'bg-transparent'
@@ -93,7 +97,7 @@ export function Header() {
             <Menu className="h-6 w-6" />
           </button>
         </nav>
-      </header>
+      </motion.header>
 
       <div
         id="mobile-menu"

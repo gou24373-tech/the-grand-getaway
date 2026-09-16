@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Search, Star, MapPin } from 'lucide-react';
 import { heroImage } from '@/data/destinations';
 
@@ -33,34 +34,42 @@ export function Hero({ onSearch }: HeroProps) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        <div
+        <motion.div
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-navy-950/40 px-4 py-2 backdrop-blur-sm"
-          style={{ animation: 'fade-in 0.8s ease-out forwards' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <Star className="h-4 w-4 fill-gold-400 text-gold-400" />
           <span className="text-sm font-medium text-gold-100">Rated #1 Luxury Travel Platform 2026</span>
-        </div>
+        </motion.div>
 
-        <h1
+        <motion.h1
           className="font-display text-4xl font-bold leading-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl"
-          style={{ animation: 'fade-up 0.8s ease-out 0.1s forwards', opacity: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
         >
           Discover the World's
           <br />
           Most <span className="text-gold-gradient">Extraordinary</span> Destinations
-        </h1>
+        </motion.h1>
 
-        <p
+        <motion.p
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-navy-100 sm:text-lg md:text-xl"
-          style={{ animation: 'fade-up 0.8s ease-out 0.2s forwards', opacity: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
         >
           Curated luxury travel guides, exclusive deals, and bespoke itineraries for the discerning traveler. Your next unforgettable journey begins here.
-        </p>
+        </motion.p>
 
-        <form
+        <motion.form
           onSubmit={handleSubmit}
           className="mx-auto mt-10 flex max-w-xl flex-col items-center gap-3 sm:flex-row"
-          style={{ animation: 'fade-up 0.8s ease-out 0.3s forwards', opacity: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
         >
           <div className="relative w-full">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-400" />
@@ -79,11 +88,13 @@ export function Hero({ onSearch }: HeroProps) {
           >
             Explore
           </button>
-        </form>
+        </motion.form>
 
-        <div
+        <motion.div
           className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-navy-200"
-          style={{ animation: 'fade-up 0.8s ease-out 0.4s forwards', opacity: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
         >
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4 text-gold-400" />
@@ -97,7 +108,7 @@ export function Hero({ onSearch }: HeroProps) {
             <Star className="h-4 w-4 fill-gold-400 text-gold-400" />
             <span>4.9 Average Rating</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
